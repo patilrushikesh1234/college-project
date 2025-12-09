@@ -1,0 +1,104 @@
+/* StudentManager.css */
+
+.student-manager {
+  padding: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.student-manager h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.import-btn {
+  display: inline-block;
+  padding: 10px 16px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background-color: #1e62ff;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.import-btn:hover {
+  background-color: #144ed8;
+}
+
+/* Student list container */
+.student-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+
+/* Individual student item */
+.student-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f7f5f5;
+  cursor: default;
+  font-size: 14px;
+}
+
+/* Delete button inside student list */
+.delete-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #fff;
+  border: 1px solid red;
+  border-radius: 6px;
+  background-color: #ec8f8f;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: #d9363e;
+}
+
+.erase-all-data {
+  display: inline-block;
+  padding: 13px 11px;
+  margin-right: 20px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background-color: #ef2323;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+
+/* Import section container */
+.import-section {
+  margin-bottom: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .student-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .import-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -1,0 +1,90 @@
+/* Wrapper container */
+.class-selector-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px 25px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+}
+
+/* Label styling */
+.class-selector-container label {
+    font-weight: 600;
+    font-size: 16px;
+    color: #333333;
+    min-width: 120px;
+}
+
+/* Dropdown styling */
+.class-selector-container select {
+    flex-grow: 1;
+    /* allows it to grow if space is available */
+    flex-shrink: 0;
+    /* prevents shrinking when container resizes */
+    min-width: 180px;
+    /* minimum width */
+    max-width: 250px;
+    /* maximum width */
+    padding: 12px 14px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #fdfdfd;
+    transition: all 0.3s ease;
+}
+
+.class-selector-container select:hover {
+    border-color: #1e62ff;
+    box-shadow: 0 0 8px rgba(30, 98, 255, 0.2);
+}
+
+.class-selector-container select:focus {
+    outline: none;
+    border-color: #1e62ff;
+    box-shadow: 0 0 8px rgba(30, 98, 255, 0.3);
+}
+
+/* Optional button styling if added later */
+.class-selector-container .add-student-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    background-color: #1e62ff;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.class-selector-container .add-student-btn:hover {
+    background-color: #144ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(20, 78, 216, 0.3);
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 480px) {
+    .class-selector-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 15px 15px;
+    }
+
+    .class-selector-container label {
+        margin-bottom: 5px;
+    }
+
+    .class-selector-container select,
+    .class-selector-container .add-student-btn {
+        width: 100%;
+    }
+}

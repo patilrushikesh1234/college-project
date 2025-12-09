@@ -1,0 +1,120 @@
+/* Overlay background */
+.sheet-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Popup box */
+.popup-box {
+  width: 100%;
+  max-width: 500px;           /* Responsive max width */
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px 25px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  animation: popupFade 0.3s ease-out;
+}
+
+/* Heading */
+.popup-box h3 {
+  margin: 0;
+  font-size: 18px;
+  text-align: center;
+  color: #333;
+}
+
+/* Input field */
+.popup-box input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.popup-box input[type="text"]:focus {
+  border-color: #1e62ff;
+  box-shadow: 0 0 8px rgba(30, 98, 255, 0.2);
+}
+
+/* Buttons */
+.popup-box button {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Import button */
+.popup-box button:not(.close-btn) {
+  background-color: #1e62ff;
+  color: #fff;
+}
+
+.popup-box button:not(.close-btn):hover {
+  background-color: #144ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(20, 78, 216, 0.3);
+}
+
+/* Close button */
+.popup-box .close-btn {
+  background-color: #ff4d4f;
+  color: #fff;
+}
+
+.popup-box .close-btn:hover {
+  background-color: #d9363e;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(217, 54, 62, 0.3);
+}
+
+/* Animation for popup */
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .popup-box {
+    padding: 15px 15px;
+    width: 90%;
+  }
+
+  .popup-box h3 {
+    font-size: 16px;
+  }
+
+  .popup-box input[type="text"] {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+
+  .popup-box button {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+}

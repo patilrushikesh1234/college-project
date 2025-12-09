@@ -1,0 +1,217 @@
+/* ==========================
+   Global Styling
+========================== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #6ba3e4, #d7c8e4);
+  min-height: 100vh;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+ .owner {
+    color: rgb(7, 7, 98);
+    font-size: 18px;
+    margin-left: 190px;
+  }
+/* ==========================
+   Gradient Headings
+========================== */
+.ssvps h2,
+.college-name h2 {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: -10px;
+  background: linear-gradient(90deg,
+      #0a0a0a,
+      #ff7f00,
+      #2b2b1a,
+      #00ff00,
+      #0000ff,
+      #4b0082,
+      #8b00ff);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: rainbowFlow 20s linear infinite;
+}
+
+@keyframes rainbowFlow {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 400%;
+  }
+}
+
+#h3 {
+  text-decoration: underline;
+  color: #402cd5;
+}
+
+/* ==========================
+   Main Container
+========================== */
+.app-container {
+  width: 95%;
+  max-width: 900px;
+  padding: 25px;
+  margin: 30px auto;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.8s ease-in-out;
+  color: black;
+}
+
+/* Title */
+h1 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #1c1c1c, #595050);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+
+/* ==========================
+   Sections
+========================== */
+.app-section {
+  padding: 20px;
+  margin: 20px 0;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+  animation: fadeUp 0.6s ease;
+}
+
+.app-section:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-3px);
+  transition: 0.2s;
+}
+
+/* ==========================
+   Centered Card Components
+========================== */
+.student-manager-container,
+.import-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 20px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  animation: fadeUp 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.student-manager-container h3,
+.import-container h3 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: white;
+}
+
+/* Buttons */
+.student-btn,
+.import-btn {
+  background: #4a90e2;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: 0.3s ease;
+}
+
+.student-btn:hover,
+.import-btn:hover {
+  background: #3579c7;
+}
+
+/* Input */
+.import-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 15px;
+}
+
+
+
+/* ==========================
+   Animations
+========================== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================
+   Responsive Fixes
+========================== */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  .app-container {
+    padding: 18px;
+    margin-top: 20px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  .ssvps h2,
+  .college-name h2 {
+    font-size: 20px;
+  }
+
+  .student-manager-container,
+  .import-container {
+    width: 100%;
+  }
+
+}
