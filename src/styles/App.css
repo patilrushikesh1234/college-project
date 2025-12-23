@@ -1,6 +1,10 @@
 /* ==========================
    Global Styling
 ========================== */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -8,32 +12,37 @@ body {
   background: linear-gradient(135deg, #6ba3e4, #d7c8e4);
   min-height: 100vh;
   color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
 }
- .owner {
-    color: rgb(7, 7, 98);
-    font-size: 18px;
-    margin-left: 190px;
-  }
+
+/* ==========================
+   Owner Text
+========================== */
+.owner {
+  color: rgb(7, 7, 98);
+  font-size: 16px;
+  text-align: center;
+  margin-top: 8px;
+}
+
 /* ==========================
    Gradient Headings
 ========================== */
 .ssvps h2,
 .college-name h2 {
-  font-size: 28px;
+  font-size: clamp(18px, 4vw, 28px);
   font-weight: 700;
   text-align: center;
-  margin-bottom: -10px;
-  background: linear-gradient(90deg,
-      #0a0a0a,
-      #ff7f00,
-      #2b2b1a,
-      #00ff00,
-      #0000ff,
-      #4b0082,
-      #8b00ff);
+  margin-bottom: -8px;
+  background: linear-gradient(
+    90deg,
+    #0a0a0a,
+    #ff7f00,
+    #2b2b1a,
+    #00ff00,
+    #0000ff,
+    #4b0082,
+    #8b00ff
+  );
   background-size: 400%;
   -webkit-background-clip: text;
   color: transparent;
@@ -44,7 +53,6 @@ body {
   0% {
     background-position: 0%;
   }
-
   100% {
     background-position: 400%;
   }
@@ -59,23 +67,21 @@ body {
    Main Container
 ========================== */
 .app-container {
-  width: 95%;
+  width: 100%;
   max-width: 900px;
-  padding: 25px;
-  margin: 30px auto;
+  padding: 20px;
+  margin: 20px auto;
   text-align: center;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(15px);
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   animation: fadeIn 0.8s ease-in-out;
-  color: black;
 }
 
 /* Title */
 h1 {
-  text-align: center;
-  font-size: 32px;
+  font-size: clamp(24px, 5vw, 32px);
   margin-bottom: 20px;
   background: linear-gradient(90deg, #1c1c1c, #595050);
   -webkit-background-clip: text;
@@ -87,8 +93,8 @@ h1 {
    Sections
 ========================== */
 .app-section {
-  padding: 20px;
-  margin: 20px 0;
+  padding: 18px;
+  margin: 18px 0;
   background: rgba(255, 255, 255, 0.25);
   border-radius: 16px;
   backdrop-filter: blur(12px);
@@ -109,9 +115,9 @@ h1 {
 .import-container {
   width: 100%;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 15px auto;
   background: rgba(255, 255, 255, 0.25);
-  padding: 20px;
+  padding: 18px;
   border-radius: 16px;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
@@ -124,18 +130,22 @@ h1 {
 .student-manager-container h3,
 .import-container h3 {
   text-align: center;
-  font-size: 22px;
+  font-size: clamp(18px, 4vw, 22px);
   margin-bottom: 15px;
   font-weight: 600;
-  color: white;
+  color: #ffffff;
 }
 
-/* Buttons */
+/* ==========================
+   Buttons
+========================== */
 .student-btn,
 .import-btn {
+  width: 100%;
+  max-width: 280px;
   background: #4a90e2;
   color: white;
-  padding: 12px 20px;
+  padding: 14px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -149,16 +159,17 @@ h1 {
   background: #3579c7;
 }
 
-/* Input */
+/* ==========================
+   Inputs
+========================== */
 .import-input {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   border-radius: 10px;
   border: none;
   margin-top: 15px;
+  font-size: 15px;
 }
-
-
 
 /* ==========================
    Animations
@@ -168,7 +179,6 @@ h1 {
     opacity: 0;
     transform: translateY(10px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -180,7 +190,6 @@ h1 {
     opacity: 0;
     transform: translateY(-20px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -188,7 +197,7 @@ h1 {
 }
 
 /* ==========================
-   Responsive Fixes
+   Mobile Responsive Fixes
 ========================== */
 @media (max-width: 600px) {
   body {
@@ -196,22 +205,10 @@ h1 {
   }
 
   .app-container {
-    padding: 18px;
-    margin-top: 20px;
+    padding: 16px;
   }
 
-  h1 {
-    font-size: 26px;
+  .app-section {
+    padding: 15px;
   }
-
-  .ssvps h2,
-  .college-name h2 {
-    font-size: 20px;
-  }
-
-  .student-manager-container,
-  .import-container {
-    width: 100%;
-  }
-
 }
