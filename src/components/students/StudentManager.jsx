@@ -4,11 +4,13 @@ import { loadJSON, saveJSON } from "../../utils/helpers";
 import { getStudentsKey, getAttendanceKey } from "../../utils/storage";
 import ImportFromSheet from "../import/ImportFromSheet";
 import "../../styles/StudentManager.css";
+import GoogleSheet from "../Links/GoogleSheet";
 
 export default function StudentManager({ classId }) {
   const [students, setStudents] = useState([]);
   const [showManager, setShowManager] = useState(false);
   const [showImport, setShowImport] = useState(false);
+  const [showSheet, setShowSheet] = useState(false);
 
   // Load students safely
   useEffect(() => {
@@ -48,7 +50,7 @@ export default function StudentManager({ classId }) {
   // Show only toggle button initially
   if (!showManager) {
     return (
-      <button onClick={toggleManager} className="import-btn">
+      <button  onClick={toggleManager} className="import-btn">
         Show Students & Import
       </button>
     );
@@ -58,6 +60,15 @@ export default function StudentManager({ classId }) {
     <div className="student-manager">
       <h3>Students – {classId}</h3>
 
+      <div>
+        <button className="link-section" onClick={() => setShowSheet(!showSheet)}>{showSheet?"Hide Link Section":"Gate Link"}</button>
+      </div>
+
+      {
+        showSheet && (
+          <GoogleSheet selectedClassId={classId} />
+        )
+      }
       {/* Toggle import */}
       <button
         onClick={() => setShowImport((prev) => !prev)}
