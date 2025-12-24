@@ -77,11 +77,9 @@ const GoogleSheet = ({ selectedClassId }) => {
                     Google Sheet Link of {selectedClass[0]?.name}
                 </p>
             </div>
-            <div><strong>Note: </strong><i><p>Google sheet link will automatically save when you past it in input box</p></i></div>
+            <div><strong>Note: </strong><i><p>Paste your Google Sheet link in the input box and it will be saved automatically for future access. </p></i></div>
             {selectedClass.map((cls) => (
                 <div key={cls.id} className="sheet-card">
-
-
                     <input
                         type="url"
                         className="sheet-input"
@@ -89,7 +87,6 @@ const GoogleSheet = ({ selectedClassId }) => {
                         value={links[cls.id] || ""}
                         onChange={(e) => handleChange(cls.id, e.target.value)}
                     />
-
                     <button
                         onClick={() => copyLink(cls.id)}
                         className="sheet-copy-btn"
