@@ -77,9 +77,10 @@ const GoogleSheet = ({ selectedClassId }) => {
                     Google Sheet Link of {selectedClass[0]?.name}
                 </p>
             </div>
+            <div><strong>Note: </strong><i><p>Google sheet link will automatically save when you past it in input box</p></i></div>
             {selectedClass.map((cls) => (
                 <div key={cls.id} className="sheet-card">
-                
+
 
                     <input
                         type="url"
