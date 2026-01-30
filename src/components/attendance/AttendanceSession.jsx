@@ -10,7 +10,7 @@ export default function AttendanceSession({ classId }) {
   // -------------------------------
   const formatToShortDate = (isoDate) => {
     const [y, m, d] = isoDate.split("-");
-    return `${d}.${m}.${y.slice(2)}`; 
+    return `${d}.${m}.${y.slice(2)}`;
   };
 
   const formatToISO = (shortDate) => {
@@ -27,7 +27,7 @@ export default function AttendanceSession({ classId }) {
     const day = today.getDate();
 
     // If date >= 1 May → start new academic year
-    if (month > 3) return true; 
+    if (month > 3) return true;
     if (month === 3 && day >= 1) return true;
     return false;
   };
@@ -110,42 +110,48 @@ export default function AttendanceSession({ classId }) {
   // -------------------------------
   // EXPORT CSV
   // -------------------------------
-const exportCSV = () => {
-  const key = getAttendanceKey(classId);
-  const attendanceData = loadJSON(key, {}) || {};
+  const exportCSV = () => {
+    const key = getAttendanceKey(classId);
+    const attendanceData = loadJSON(key, {}) || {};
 
-  if (!students.length) return alert("No students found!");
+    if (!students?.length) {
+      alert("No students found!");
+      return;
+    }
 
-  // REMOVE reset flag & old dates
-  const dates = Object.keys(attendanceData)
-    .filter(d => d !== "__resetDone")  // remove reset flag
-    .filter(d => !/^\d{2}\.\d{2}\.\d{2}$/.test(d) || isNewAcademicYear()) // keep only new dates after reset
-    .sort();
+    const dates = Object.keys(attendanceData)
+      .filter(d => d !== "__resetDone")
+      .sort();
 
-  if (!dates.length) return alert("No attendance data found!");
+    if (!dates.length) {
+      alert("No attendance data found!");
+      return;
+    }
 
-  let csv = "Roll Number,Name," + dates.map(d => `"${d}"`).join(",") + "\n";
+    let csv = "Roll Number,Name," + dates.join(",") + "\n";
 
-  students.forEach((s) => {
-    let row = `${s.roll},${s.name}`;
+    students.forEach(s => {
+      let row = `${s.roll},${s.name}`;
 
-    dates.forEach((d) => {
-      const isPresent = attendanceData[d]?.[s.roll];
-      row += `,${isPresent ? "P" : "A"}`;
+      dates.forEach(d => {
+        const isPresent = attendanceData[d]?.[s.roll];
+        row += `,${isPresent ? "P" : "A"}`;
+      });
+
+      csv += row + "\n";
     });
 
-    csv += row + "\n";
-  });
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
 
-  const blob = new Blob([csv], { type: "text/csv" });
-  const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "attendance-summary.csv";
+    a.click();
 
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `attendance-summary.csv`;
-  a.click();
-  URL.revokeObjectURL(url);
-};
+    URL.revokeObjectURL(url);
+  };
+
 
 
   // -------------------------------
