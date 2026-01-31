@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { @apply box-border; }
+  body {
+    @apply m-0 p-0 min-h-screen text-gray-800 antialiased;
+    font-family: var(--font-poppins), system-ui, sans-serif;
+    background: linear-gradient(135deg, #6ba3e4, #d7c8e4);
+  }
+}
+
+@keyframes rainbowFlow {
+  0% { background-position: 0%; }
+  100% { background-position: 400%; }
+}
+
+.rainbow-text {
+  background: linear-gradient(90deg, #0a0a0a, #ff7f00, #2b2b1a, #00ff00, #0000ff, #4b0082, #8b00ff);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbowFlow 20s linear infinite;
+}
