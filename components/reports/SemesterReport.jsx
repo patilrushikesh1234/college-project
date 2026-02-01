@@ -14,16 +14,15 @@ export default function SemesterReport({ classId, subject }) {
     const dates = Object.keys(attendance);
 
     const result = students.map((s) => {
-      let present = 0;
-      dates.forEach((d) => {
-        if (attendance[d]?.[s.roll]) present++;
-      });
       const total = dates.length;
+      const present = dates.filter((d) => attendance[d]?.[s.roll]).length;
+      const absent = total - present;
+
       return {
         ...s,
         present,
-        absent: total - present,
-        total: present + absent,
+        absent,
+        total,
         percent: total ? ((present / total) * 100).toFixed(2) : "0",
       };
     });
@@ -33,34 +32,37 @@ export default function SemesterReport({ classId, subject }) {
 
   return (
     <div className="mt-4">
-      <h3 className="font-semibold mb-2">
+      <h3 className="font-semibold mb-2 text-base sm:text-lg">
         Semester Report – {subject}
       </h3>
 
-      <table className="w-full border text-sm">
-        <thead className="bg-blue-600 text-white">
-          <tr>
-            <th>Roll</th>
-            <th>Name</th>
-            <th>Present</th>
-            <th>Absent</th>
-            <th>Total</th>
-            <th>%</th>
-          </tr>
-        </thead>
-        <tbody>
-          {report.map((r) => (
-            <tr key={r.roll} className="text-center border">
-              <td>{r.roll}</td>
-              <td>{r.name}</td>
-              <td>{r.present}</td>
-              <td>{r.absent}</td>
-              <td>{r.total}</td>
-              <td>{r.percent}%</td>
+      {/* Scrollable wrapper for small screens */}
+      <div className="overflow-x-auto">
+        <table className="w-full border text-xs sm:text-sm">
+          <thead className="bg-blue-600 text-white">
+            <tr>
+              <th className="px-2 py-1">Roll</th>
+              <th className="px-2 py-1">Name</th>
+              <th className="px-2 py-1">Present</th>
+              <th className="px-2 py-1">Absent</th>
+              <th className="px-2 py-1">Total</th>
+              <th className="px-2 py-1">%</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {report.map((r) => (
+              <tr key={r.roll} className="text-center border">
+                <td className="px-2 py-1">{r.roll}</td>
+                <td className="px-2 py-1">{r.name}</td>
+                <td className="px-2 py-1">{r.present}</td>
+                <td className="px-2 py-1">{r.absent}</td>
+                <td className="px-2 py-1">{r.total}</td>
+                <td className="px-2 py-1">{r.percent}%</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
