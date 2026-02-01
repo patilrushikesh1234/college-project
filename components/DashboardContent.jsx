@@ -6,8 +6,7 @@ import SubjectSelector from "@/components/subject/SubjectSelector";
 import StudentManager from "@/components/students/StudentManager";
 import AttendanceSession from "@/components/attendance/AttendanceSession";
 import SemesterReport from "@/components/reports/SemesterReport";
-import Image from "next/image";
-
+import Link from "next/link";
 export default function DashboardContent() {
   const [classId, setClassId] = useState("");
   const [subject, setSubject] = useState("");
@@ -68,16 +67,19 @@ export default function DashboardContent() {
         )}
       </div>
 
-      <div>
-        <p className="text-center text-sm text-gray-500 mt-8">
-          &copy; {new Date().getFullYear()} P.R. Ghogre College Dhule. All rights reserved.
-        </p>
-      </div>
-      <div>
-        <p className=" right-10 text-center italic text-sm text-gray-500">
-          Developed by Rushikesh Patil.
-        </p>
-      </div>
+      <Link href="/getLink">
+        <div >
+          <p className="text-center text-sm text-gray-500 mt-8">
+            &copy; {new Date().getFullYear()} P.R. Ghogre College Dhule. All rights reserved.
+          </p>
+        </div>
+        <div>
+          <p className=" right-10 text-center italic text-sm text-gray-500">
+            Developed by Rushikesh Patil.
+          </p>
+        </div>
+      </Link>
+
     </div>
   );
 }

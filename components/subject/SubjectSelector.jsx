@@ -34,22 +34,29 @@ export default function SubjectSelector({ classId, subject, setSubject }) {
       )
 
       }
-      <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-4 text-center sm:text-left">
-        Select Subject
-      </h3>
 
-      {/* Dropdown */}
-      <select
-        value={subject}
-        onChange={(e) => setSubject(e.target.value)}
-        className="w-full p-2 sm:p-3 mb-4 border border-gray-300 rounded-xl bg-gray-50 text-sm sm:text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 transition
+      <div className="flex gap-5 items-center">
+        <div>
+          <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-4 justify-start  sm:text-left">
+            Select Subject :
+          </h3>
+        </div>
+
+        {/* Dropdown */}
+        <div>
+          <select
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+            className="w-auto p-3 sm:p-3 mb-3 border border-gray-300 rounded-md bg-gray-50 text-sm sm:text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 transition
              overflow-y-auto max-h-40"
-      >
-        <option value="">-- Select Subject --</option>
-        {subjects.map((s, i) => (
-          <option key={i} value={s}>{s}</option>
-        ))}
-      </select>
+          >
+            <option value="">-- Select Subject --</option>
+            {subjects.map((s, i) => (
+              <option key={i} value={s}>{s}</option>
+            ))}
+          </select>
+        </div>
+      </div>
 
 
       {/* Add new subject */}
@@ -72,20 +79,20 @@ export default function SubjectSelector({ classId, subject, setSubject }) {
       ) : (
         <p
           onClick={() => setShowAddSubject(true)}
-          className="cursor-pointer text-blue-600 hover:underline font-medium text-sm sm:text-base"
+          className="cursor-pointer text-blue-600 hover:underline font-medium text-sm justify-center sm:text-base"
         >
           + Add New Subject
         </p>
       )}
 
       {showAddSubject === true && (
-          <p
-            onClick={() => setShowAddSubject(false)}
-            className="cursor-pointer text-center underline text-red-600 hover:underline font-medium text-sm sm:text-base mt-2"
-          >
-            Close
-          </p>
-        )}
+        <p
+          onClick={() => setShowAddSubject(false)}
+          className="cursor-pointer text-center underline text-red-600 hover:underline font-medium text-sm sm:text-base mt-2"
+        >
+          Close
+        </p>
+      )}
     </div>
 
   );
