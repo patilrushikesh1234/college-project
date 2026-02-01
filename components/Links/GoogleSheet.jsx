@@ -35,15 +35,17 @@ export default function GoogleSheet({ selectedClassId }) {
   if (!selectedClassId) return <p className="text-gray-600">No class selected.</p>;
 
   return (
-    <div className="py-6 px-5 max-w-md mx-auto space-y-6">
+    <div className=" px-1 max-w-md mx-1 space-y-2">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-xl font-semibold text-gray-800">
+        <h2 className="text-lg font-semibold text-gray-800">
           Google Sheet Link for {selectedClass[0]?.name}
         </h2>
-        <p className="mt-1 text-sm text-gray-600">
-          Paste your Google Sheet link below. It will be saved automatically for future access.
-        </p>
+        <marquee behavior="" direction="">
+          <p className="mt-1 text-sm text-red-600">
+            Paste your Google Sheet link below. It will be saved automatically for future access.
+          </p>
+        </marquee>
       </div>
 
       {/* Link Input Cards */}
@@ -59,7 +61,7 @@ export default function GoogleSheet({ selectedClassId }) {
             placeholder="Paste Google Sheet link here"
             value={links[cls.id] || ""}
             onChange={(e) => handleChange(cls.id, e.target.value)}
-            className="flex-1 w-full sm:w-auto py-2.5 px-3 text-sm
+            className="flex-1 w-full sm:w-auto py-2 px-3 text-sm
                    border border-gray-300 rounded-md outline-none
                    focus:border-blue-600 focus:ring-1 focus:ring-blue-600 mb-3 sm:mb-0"
           />

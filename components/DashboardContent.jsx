@@ -2,25 +2,27 @@
 
 import { useState } from "react";
 import ClassSelector from "@/components/class/ClassSelector";
+import SubjectSelector from "@/components/subject/SubjectSelector";
 import StudentManager from "@/components/students/StudentManager";
 import AttendanceSession from "@/components/attendance/AttendanceSession";
 import SemesterReport from "@/components/reports/SemesterReport";
+import Image from "next/image";
 
 export default function DashboardContent() {
   const [classId, setClassId] = useState("");
+  const [subject, setSubject] = useState("");
+  const [showReport, setShowReport] = useState(false);
 
   return (
-    <div className="w-full max-w-[900px] mx-auto my-1 p-2 md:p-6 text-center from-cyan-600 to-cyan-500 backdrop-blur-xl rounded-2xl shadow-xl">
+    <div className="max-w-[900px] mx-auto p-4">
 
-      <div className="flex flex-col items-center mb-4">
+
+      <div className="flex justify-center  gap-4">
         <img
           src="/colleg-logo.png"
-          alt="S.S.V.P Logo"
-          className="w-20 h-20 flex-shrink-0 mx-auto mb-1 hover:scale-110 transition-transform duration-300"
+          alt="college logo"
+          className="w-20 h-20 object-contain border rounded-lg"
         />
-
-
-        {/* College Name */}
         <div className="flex flex-col">
           <h2 className="text-lg sm:text-xl md:text-2xl font-bold rainbow-text">
             S.S.V.P Sanstha's
@@ -31,31 +33,51 @@ export default function DashboardContent() {
         </div>
       </div>
 
-      <h3 className="text-xl font-semibold underline text-[#402cd5] my-4">Take Smart Attendance</h3>
 
-      <section className="py-1 px-2 my-4 rounded-2xl bg-white/25 backdrop-blur-md shadow-lg hover:bg-white/35 hover:-translate-y-0.5 transition-all duration-200">
-        <ClassSelector classId={classId} setClassId={setClassId} />
-      </section>
+      <ClassSelector classId={classId} setClassId={setClassId} />
 
       {classId && (
-        <section className="py-2 px-2 my-1 rounded-2xl bg-white/25 backdrop-blur-md shadow-lg hover:bg-white/35 hover:-translate-y-0.5 transition-all duration-200">
-          <AttendanceSession classId={classId} />
-        </section>
+        <SubjectSelector
+          classId={classId}
+          subject={subject}
+          setSubject={setSubject}
+        />
       )}
 
-      {classId && (
-        <section className="py-4 px-4 my-4 rounded-2xl bg-white/25 backdrop-blur-md shadow-lg hover:bg-white/35 hover:-translate-y-0.5 transition-all duration-200">
+      {classId && subject && (
+        <AttendanceSession classId={classId} subject={subject} />
+      )}
+
+      <div className="my-4   ">
+        {classId && subject && (
           <StudentManager classId={classId} />
-        </section>
-      )}
+        )}
+      </div>
 
-      {classId && (
-        <section className="py-4 px-4 my-4 rounded-2xl bg-white/25 backdrop-blur-md shadow-lg hover:bg-white/35 hover:-translate-y-0.5 transition-all duration-200">
-          <SemesterReport classId={classId} />
-        </section>
-      )}
+      <div className="my-4   ">
+        {classId && subject && (
+          <button
+            onClick={() => setShowReport((prev) => !prev)}
+            className="w-full py-3 rounded-xl bg-blue-500 hover:bg-blue-700 text-white font-semibold mb-2"
+          >
+            {showReport ? "Hide Semester Report" : "Show Semester Report"}
+          </button>
+        )}
+        {showReport && classId && subject && (
+          <SemesterReport classId={classId} subject={subject} />
+        )}
+      </div>
 
-      <div className="mt-2 text-center text-base text-[rgb(7,7,98)] italic">Design by~Rushikesh Patil</div>
+      <div>
+        <p className="text-center text-sm text-gray-500 mt-8">
+          &copy; {new Date().getFullYear()} P.R. Ghogre College Dhule. All rights reserved.
+        </p>
+      </div>
+      <div>
+        <p className=" right-10 text-center italic text-sm text-gray-500">
+          Developed by Rushikesh Patil.
+        </p>
+      </div>
     </div>
   );
 }

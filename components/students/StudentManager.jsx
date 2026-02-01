@@ -45,25 +45,35 @@ export default function StudentManager({ classId }) {
       <button
         type="button"
         onClick={toggleManager}
-        className="w-full max-w-[280px] py-3.5 px-4 rounded-xl bg-[#4a90e2] hover:bg-[#3579c7] text-white font-semibold text-base transition-colors"
-      >
+        className="
+                    w-full
+                    py-3 sm:py-3.5
+                    px-4 sm:px-6
+                    rounded-xl
+                    bg-[#4a90e2] hover:bg-[#3579c7]
+                    text-white font-semibold
+                    text-sm sm:text-base
+                    transition-colors
+                  ">
         Show Students & Import
       </button>
+
     );
   }
 
   return (
-    <div className="p-4 max-w-[600px] mx-auto border border-gray-200 rounded-xl bg-gray-50">
-      <h3 className="text-center mb-4 text-lg font-semibold text-gray-800">Students – {classId}</h3>
-      <div className="mb-4">
-        <button
-          type="button"
-          className="inline-block py-2.5 px-4 mb-4 text-sm font-semibold rounded-lg bg-[#5484f6] hover:bg-[#144ed8] text-white transition-colors"
+    <div className="p-6 max-w-[600px] mx-2 border border-gray-200 rounded-xl bg-gray-50">
+      <h3 className="text-center mb-1 text-lg font-semibold text-gray-800">Students – {classId}</h3>
+      <div className="mb-2 text-center">
+        <span
           onClick={() => setShowSheet(!showSheet)}
+          className="cursor-pointer text-sm font-semibold text-blue-600 hover:text-blue-800 underline transition-colors"
         >
-          {showSheet ? "Hide Link Section" : "Get Link"}
-        </button>
+          {showSheet ? "Hide Link Section" : "Get Google Sheet Link"}
+        </span>
       </div>
+
+
       {showSheet && <GoogleSheet selectedClassId={classId} />}
 
 
@@ -73,7 +83,7 @@ export default function StudentManager({ classId }) {
         className="w-full py-2.5 px-4 mb-4 text-sm font-semibold rounded-lg bg-[#1e62ff] hover:bg-[#144ed8] text-white transition-colors"
         onClick={() => setShowImport((prev) => !prev)}
       >
-        {showImport ? "Hide Import Section" : "Show Import Section"}
+        {showImport ? "Cancel Student Import" : "Add Students via Google Sheet"}
       </button>
       {showImport && (
         <ImportFromSheet classId={classId} onClose={() => setShowImport(false)} onImport={handleImport} />

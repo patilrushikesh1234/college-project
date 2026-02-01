@@ -1,5 +1,7 @@
 export const getStudentsKey = (classId) => `students_${classId}`;
-export const getAttendanceKey = (classId) => `attendance_${classId}`;
+export const getSubjectsKey = (classId) => `subjects_${classId}`;
+export const getAttendanceKey = (classId, subject) =>
+  `attendance_${classId}_${subject}`;
 
 export function loadJSON(key, defaultValue = null) {
   if (typeof window === "undefined") return defaultValue;
