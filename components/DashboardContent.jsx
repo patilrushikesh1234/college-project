@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import ClassSelector from "@/components/class/ClassSelector";
 import SubjectSelector from "@/components/subject/SubjectSelector";
@@ -12,11 +11,12 @@ export default function DashboardContent() {
   const [subject, setSubject] = useState("");
   const [showReport, setShowReport] = useState(false);
 
+
   return (
-    <div className="max-w-[900px] mx-auto p-4">
+    <div className="max-w-[900px]    mx-auto p-4">
 
-
-      <div className="flex justify-center  gap-4">
+      {/* Header */}
+      <div className="flex justify-center gap-4 mb-6">
         <img
           src="/colleg-logo.png"
           alt="college logo"
@@ -32,54 +32,63 @@ export default function DashboardContent() {
         </div>
       </div>
 
-
-      <ClassSelector classId={classId} setClassId={setClassId} />
-
-      {classId && (
-        <SubjectSelector
-          classId={classId}
-          subject={subject}
-          setSubject={setSubject}
-        />
-      )}
-
-      {classId && subject && (
-        <AttendanceSession classId={classId} subject={subject} />
-      )}
-
-      <div className="my-4   ">
-        {classId && subject && (
-          <StudentManager classId={classId} />
-        )}
+      {/* Class Selector */}
+      <div className="max-w-[700px] mx-auto">
+        <ClassSelector classId={classId} setClassId={setClassId} />
       </div>
 
-      <div className="my-4   ">
-        {classId && subject && (
+      {/* Subject Selector */}
+      {classId && (
+        <div className="max-w-[700px] mx-auto mt-4">
+          <SubjectSelector
+            classId={classId}
+            subject={subject}
+            setSubject={setSubject}
+          />
+        </div>
+      )}
+
+      {/* Attendance Session */}
+      {classId && subject && (
+        <div className="max-w-[700px] mx-auto mt-4">
+          <AttendanceSession classId={classId} subject={subject} />
+        </div>
+      )}
+
+      {/* Student Import */}
+      {classId && subject && (
+        <div className="my-4 max-w-[700px] mx-auto">
+          <StudentManager classId={classId} />
+        </div>
+      )}
+
+      {/* Semester Report */}
+      {classId && subject && (
+        <div className="my-6 max-w-[700px] mx-auto text-center">
           <button
             onClick={() => setShowReport((prev) => !prev)}
-            className="w-full py-3 rounded-xl bg-blue-500 hover:bg-blue-700 text-white font-semibold mb-2"
+            className="w-full sm:w-auto sm:px-6 py-3 rounded-xl bg-blue-500 hover:bg-blue-700 text-white font-semibold mb-3 mx-auto block"
           >
             {showReport ? "Hide Semester Report" : "Show Semester Report"}
           </button>
-        )}
-        {showReport && classId && subject && (
-          <SemesterReport classId={classId} subject={subject} />
-        )}
+
+          {showReport && (
+            <SemesterReport classId={classId} subject={subject} />
+          )}
+        </div>
+      )}
+
+      {/* Footer */}
+      <div className="mt-10">
+        <p className="text-center text-sm text-gray-500">
+          &copy; {new Date().getFullYear()} P.R. Ghogre College Dhule. All rights reserved.
+        </p>
+        <p className="text-center italic text-sm text-gray-500">
+          Developed by Rushikesh Patil.
+        </p>
       </div>
 
-      <Link href="/getLink">
-        <div >
-          <p className="text-center text-sm text-gray-500 mt-8">
-            &copy; {new Date().getFullYear()} P.R. Ghogre College Dhule. All rights reserved.
-          </p>
-        </div>
-        <div>
-          <p className=" right-10 text-center italic text-sm text-gray-500">
-            Developed by Rushikesh Patil.
-          </p>
-        </div>
-      </Link>
-
     </div>
+
   );
 }

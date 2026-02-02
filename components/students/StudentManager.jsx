@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { loadJSON, saveJSON, getStudentsKey, getAttendanceKey } from "@/utils/storage";
 import ImportFromSheet from "@/components/import/ImportFromSheet";
 import GoogleSheet from "@/components/Links/GoogleSheet";
+import Link from "next/link";
 
 export default function StudentManager({ classId }) {
   const [students, setStudents] = useState([]);
@@ -46,56 +47,60 @@ export default function StudentManager({ classId }) {
         type="button"
         onClick={toggleManager}
         className="
-                    w-full
-                    py-3 sm:py-3.5
-                    px-4 sm:px-6
-                    rounded-xl
-                    bg-[#4a90e2] hover:bg-[#3579c7]
-                    text-white font-semibold
-                    text-sm sm:text-base
-                    transition-colors
-                  ">
+                  w-full sm:w-auto
+                  max-w-[620px]
+                  mx-auto block
+                  py-3 sm:py-3.5
+                  px-4 sm:px-6
+                  rounded-xl
+                  bg-[#4a90e2] hover:bg-[#3579c7]
+                  text-white font-semibold
+                  text-sm sm:text-base
+                  transition-colors "
+      >
         Show Students & Import
       </button>
+
 
     );
   }
 
   return (
-    <div className="p-6 max-w-[600px] mx-2 border border-gray-200 rounded-xl bg-gray-50">
-      <h3 className="text-center mb-1 text-lg font-semibold text-gray-800">Students – {classId}</h3>
-      <div className="mb-2 text-center">
-        <span
-          onClick={() => setShowSheet(!showSheet)}
-          className="cursor-pointer text-sm font-semibold text-blue-600 hover:text-blue-800 underline transition-colors"
-        >
-          {showSheet ? "Hide Link Section" : "Get Google Sheet Link"}
-        </span>
-      </div>
+    <div className="p-4 lg:ml-12 max-w-[600px]  border border-gray-200 rounded-xl bg-gray-50">
+      <h3 className="text-center mb-4 text-lg font-semibold text-gray-800">Students – {classId}</h3>
+      {students.length === 0 ? (
+        <div>
+          <Link href="/getLink">
+            <div className="mb-2 text-center">
+              <span
+                className="cursor-pointer text-sm font-semibold text-blue-600 hover:text-blue-800 underline transition-colors"
+              >
+                Get Google Sheet Link
+              </span>
+            </div>
+          </Link>
 
 
-      {showSheet && <GoogleSheet selectedClassId={classId} />}
+          <button
+            type="button"
+            className="w-full py-2.5 px-4 mb-4 text-sm font-semibold rounded-lg bg-[#1e62ff] hover:bg-[#144ed8] text-white transition-colors"
+            onClick={() => setShowImport((prev) => !prev)}
+          >
+            {showImport ? "Cancel Student Import" : "Add Students via Google Sheet"}
+          </button></div>
+      ) : (null)
+      }
 
 
 
-      <button
-        type="button"
-        className="w-full py-2.5 px-4 mb-4 text-sm font-semibold rounded-lg bg-[#1e62ff] hover:bg-[#144ed8] text-white transition-colors"
-        onClick={() => setShowImport((prev) => !prev)}
-      >
-        {showImport ? "Cancel Student Import" : "Add Students via Google Sheet"}
-      </button>
       {showImport && (
         <ImportFromSheet classId={classId} onClose={() => setShowImport(false)} onImport={handleImport} />
       )}
 
-      <h1 className="text-center pb-2 text-xm font-semibold text-gray-900 tracking-wide">
-        Students of <span className="text-black-600  ">{classId}</span>
-      </h1>
 
 
       {students.length > 0 ? (
-        <ul className="grid grid-cols-3 gap-2 list-none p-0 max-h-[400px] overflow-y-auto">
+        <ul className="grid grid-cols-3 gap-2 list-none p-0    max-h-[400px] overflow-y-auto">
           {students.map((s, i) => (
             <li
               key={i}
@@ -130,7 +135,7 @@ export default function StudentManager({ classId }) {
 
       <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
         {/* Delete Button */}
-        <button
+        {students.length > 0 && (<button
           type="button"
           className="w-full sm:w-auto py-3 px-6 text-sm font-semibold rounded-lg
                bg-red-600 hover:bg-red-700 text-white transition-colors"
@@ -158,7 +163,7 @@ export default function StudentManager({ classId }) {
         >
           Delete All Data (Semester Reset)
         </button>
-
+        )}
         {/* Toggle Button */}
         <button
           type="button"

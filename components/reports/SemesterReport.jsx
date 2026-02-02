@@ -37,31 +37,38 @@ export default function SemesterReport({ classId, subject }) {
       </h3>
 
       {/* Scrollable wrapper for small screens */}
-      <div className="overflow-x-auto">
-        <table className="w-full border text-xs sm:text-sm">
-          <thead className="bg-blue-600 text-white">
-            <tr>
-              <th className="px-2 py-1">Roll</th>
-              <th className="px-2 py-1">Name</th>
-              <th className="px-2 py-1">Present</th>
-              <th className="px-2 py-1">Absent</th>
-              <th className="px-2 py-1">Total</th>
-              <th className="px-2 py-1">%</th>
-            </tr>
-          </thead>
-          <tbody>
-            {report.map((r) => (
-              <tr key={r.roll} className="text-center border">
-                <td className="px-2 py-1">{r.roll}</td>
-                <td className="px-2 py-1">{r.name}</td>
-                <td className="px-2 py-1">{r.present}</td>
-                <td className="px-2 py-1">{r.absent}</td>
-                <td className="px-2 py-1">{r.total}</td>
-                <td className="px-2 py-1">{r.percent}%</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+     <div className="overflow-x-auto">
+  <table className="w-full border text-xs sm:text-sm bg-white">
+    <thead className="bg-blue-600 text-white">
+      <tr>
+        <th className="px-2 py-1">Roll</th>
+        <th className="px-2 py-1">Name</th>
+        <th className="px-2 py-1">Present</th>
+        <th className="px-2 py-1">Absent</th>
+        <th className="px-2 py-1">Total</th>
+        <th className="px-2 py-1">%</th>
+      </tr>
+    </thead>
+
+    <tbody className="bg-white">
+      {report.map((r, index) => (
+        <tr
+          key={r.roll}
+          className={`text-center border ${
+            index % 2 === 0 ? "bg-white" : "bg-gray-50"
+          }`}
+        >
+          <td className="px-2 py-1">{r.roll}</td>
+          <td className="px-2 py-1">{r.name}</td>
+          <td className="px-2 py-1">{r.present}</td>
+          <td className="px-2 py-1">{r.absent}</td>
+          <td className="px-2 py-1">{r.total}</td>
+          <td className="px-2 py-1">{r.percent}%</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+ 
       </div>
     </div>
   );

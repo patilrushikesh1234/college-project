@@ -80,44 +80,55 @@ export default function AttendanceSession({ classId, subject }) {
 
   return (
     <div className="max-w-[600px] mx-auto p-3 rounded-xl bg-white shadow-md">
-      <h3 className="font-semibold mb-3">
-        Attendance of – {subject}
-      </h3>
 
-      <input
-        type="date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-        className="mb-4 p-2 border rounded-lg w-full"
-      />
+      {students && students.length > 0 ? (
+        <>
+          <h3 className="font-semibold mb-3">
+            Attendance of – {subject}
+          </h3>
 
-      <div className="grid grid-cols-5 gap-2 mb-4">
-        {students.map((s) => (
-          <div
-            key={s.roll}
-            onClick={() => toggle(s.roll)}
-            className={`cursor-pointer p-2 text-center rounded-full font-semibold border border-gray-600  
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            className="mb-4 p-2 border rounded-lg w-full"
+          />
+
+          <div className="grid grid-cols-5 gap-2 mb-4">
+            {students.map((s) => (
+              <div
+                key={s.roll}
+                onClick={() => toggle(s.roll)}
+                className={`cursor-pointer p-2 text-center rounded-full font-semibold border border-gray-600
               ${present[s.roll] ? "bg-green-400" : "bg-red-400"}`}
-          >
-            {s.roll}
+              >
+                {s.roll}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      <button
-        onClick={save}
-        className="w-full py-3 rounded-lg bg-blue-600 text-white font-semibold mb-2"
-      >
-        Save Attendance
-      </button>
+          <button
+            onClick={save}
+            className="w-full py-3 rounded-lg bg-blue-600 text-white font-semibold mb-2"
+          >
+            Save Attendance
+          </button>
 
-      {/* ✅ Export CSV Button */}
-      <button
-        onClick={exportCSV}
-        className="w-full py-3 rounded-lg bg-green-600 hover:bg-green-700 text-white font-semibold"
-      >
-        Export CSV
-      </button>
+          <button
+            onClick={exportCSV}
+            className="w-full py-3 rounded-lg bg-green-600 hover:bg-green-700 text-white font-semibold"
+          >
+            Export CSV
+          </button>
+        </>
+      ) : (
+        <p className="text-center text-gray-500 text-sm">
+          No students found. Please import students before taking attendance 👇
+        </p>
+
+      )}
+
     </div>
+
   );
 }
