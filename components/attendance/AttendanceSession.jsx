@@ -122,8 +122,8 @@ export default function AttendanceSession({ classId, subject }) {
           </button>
         </>
       ) : (
-        <p className="text-center text-gray-500 text-sm">
-          No students found. Please import students before taking attendance 👇
+        <p className="text-center text-red-500 text-sm">
+          No students found.You have to import students first 👇
         </p>
 
       )}

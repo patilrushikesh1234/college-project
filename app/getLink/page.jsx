@@ -38,11 +38,11 @@ const StudentsLink = () => {
             link: "https://docs.google.com/....",
         },
         {
-            className: "MSC 1",
+            className: "MSC COMP 1",
             link: "https://docs.google.com/....",
         },
         {
-            className: "MSC 2",
+            className: "MSC COMP 2",
             link: "https://docs.google.com/....",
         }
     ];

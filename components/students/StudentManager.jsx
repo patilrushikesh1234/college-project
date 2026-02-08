@@ -67,7 +67,12 @@ export default function StudentManager({ classId }) {
 
   return (
     <div className="p-4 lg:ml-12 max-w-[600px]  border border-gray-200 rounded-xl bg-gray-50">
-      <h3 className="text-center mb-4 text-lg font-semibold text-gray-800">Students – {classId}</h3>
+      {students.length === 0 ? (
+        <div className="mb-4 text-center">
+          <p className="text-red-500 text-bold ">No students found for this class. Please import students. Through the Google Sheet link below.</p>
+        </div>
+      ) : (null)}
+
       {students.length === 0 ? (
         <div>
           <Link href="/getLink">
@@ -92,7 +97,10 @@ export default function StudentManager({ classId }) {
       }
 
 
-
+      {students.length > 0 && (
+        <h3 className="text-center mb-4 text-lg font-semibold text-gray-800">Students – {classId}</h3>
+      )
+      }
       {showImport && (
         <ImportFromSheet classId={classId} onClose={() => setShowImport(false)} onImport={handleImport} />
       )}

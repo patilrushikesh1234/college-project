@@ -80,10 +80,10 @@ export default function DashboardContent() {
 
       {/* Footer */}
       <div className="mt-10">
-        <p className="text-center text-sm text-gray-500">
+        <p className="text-center text-sm text-gray-100">
           &copy; {new Date().getFullYear()} P.R. Ghogre College Dhule. All rights reserved.
         </p>
-        <p className="text-center italic text-sm text-gray-500">
+        <p className="text-center italic text-sm text-gray-100">
           Developed by Rushikesh Patil.
         </p>
       </div>

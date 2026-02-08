@@ -6,9 +6,6 @@ export default function ClassSelector({ classId, setClassId }) {
   return (
     <div className="max-w-[600px] mx-auto my-3 py-3 px-2 border border-gray-200 rounded-xl bg-white shadow-md flex flex-wrap items-center gap-4">
       <label htmlFor="class-select" className="font-semibold text-base text-gray-800 min-w-[120px]">Select Class :</label>
-
-
-
       <select
         id="class-select"
         value={classId}
@@ -20,8 +17,7 @@ export default function ClassSelector({ classId, setClassId }) {
           <option key={c.id} value={c.id}>{c.name}</option>
         ))}
       </select>
-
-
+      
     </div>
   );
 }
