@@ -7,11 +7,11 @@ const StudentsLink = () => {
     const classLinks = [
         {
             className: "FY BCA",
-            link: "https://docs.google.com/spreadsheets/d/1dG_hV65bO1yKTzDpAfShlI0e5-rYiXvzGa7T1NzOW90/edit?usp=drivesdk",
+            link: "https://docs.google.com/spreadsheets/d/1of9Kt-JwUtX1wFGgMl-6OW7g1HpXfAxzO687Wdtyj2g/edit?usp=drivesdk",
         },
         {
             className: "SY BCA",
-            link: "https://docs.google.com/....",
+            link: "https://docs.google.com/spreadsheets/d/1dG_hV65bO1yKTzDpAfShlI0e5-rYiXvzGa7T1NzOW90/edit?usp=drivesdk",
         },
         {
             className: "TY BCA",
