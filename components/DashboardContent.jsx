@@ -84,7 +84,7 @@ export default function DashboardContent() {
           &copy; {new Date().getFullYear()} P.R. Ghogre College Dhule. All rights reserved.
         </p>
         <p className="text-center italic text-sm text-gray-100">
-          Developed by Rushikesh Patil.
+          Developed by Chandrashekhar.
         </p>
       </div>
 
